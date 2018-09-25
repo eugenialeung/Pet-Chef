@@ -1,0 +1,114 @@
+
+
+<div id="showFormTwo"></div>
+
+<div class="foodForm">
+  <h4>{{newDog.petname}} needs a total of {{newDog.foodintake}} pounds ({{16*newDog.foodintake}} ounces) of food per day</h4>
+
+  
+
+  {{newFood | json}}
+  <form (submit)="addFoodSource()" (keydown.enter)="$event.preventDefault()">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for = "foodname">Food</label>
+        <select id="foodname" class="form-control" name="newFood.foodname"  (change)="showFood($event.target.value)" [(ngModel)]="newFood.foodname">
+          <option selected> </option>
+          <option value="{{food.food.desc.ndbno}}" *ngFor="let food of foodArray">{{food.food.desc.name}}</option>
+          <!-- <option>Crushed egg shells</option>
+          <option>Kefir</option>
+          <option>Oysters</option>
+          <option>Whole sardines</option> -->
+        </select>
+      </div>
+      <div class="form-group col-md-6">
+          <label for = "foodweight">Weight of Food</label>
+          <input type="text" class="form-control" id="foodweight" placeholder="Quantity in Ounces" (keypress)="showFood(-100)" name="weight.foodweight"  [(ngModel)]="weight.foodweight" value=0>
+      </div>
+    </div>
+    <input class="btn btn-primary" type="submit" value="Add Food Source">    
+  </form>
+
+
+  
+
+  <div class="table-responsive">
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Food Source</th>
+          <th scope="col">Qty in Ounces</th>
+          <th scope="col">Energy</th>
+          <th scope="col">Protein</th>
+          <th scope="col">Carbs</th>
+          <th scope="col">Fats</th>
+          <th scope="col">Vitamin E</th>
+          <th scope="col">Vitamin D</th>
+          <th scope="col">Zinc</th>
+          <th scope="col">Copper</th>
+          <th scope="col">Calcium</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="currentRecipe">
+        <!-- <tr *ngFor="let currentFood of currentRecipe.food; let i = index"> -->
+        <tr *ngFor="let currentFood of currentRecipe.food">
+        <!-- <tr> -->
+          <!-- values based per 100g.  1ounce = 28.35grams-->
+          <td>{{currentFood.foodname}}</td>
+          <td>{{currentFood.foodweight}}</td> <!-- 600oz/x g = 1oz/28.35g becomes 17010g --> 
+          <!-- <td>{{(currentFood.foodweight*.2835)*currentFood.calories}}</td>  -->
+          <td>{{currentFood.calories | nutrientValues}}</td> 
+          <td>{{currentFood.protein | nutrientValues}}</td> 
+          <td>{{currentFood.carbs | nutrientValues}}</td>  
+          <td>{{currentFood.fats | nutrientValues}}</td> 
+          <td>{{currentFood.vitaminE | nutrientValues}}</td> 
+          <td>{{currentFood.vitaminD | nutrientValues}}</td> 
+          <td>{{currentFood.zinc | nutrientValues}}</td>  
+          <td>{{currentFood.copper | nutrientValues}}</td> 
+          <td>{{currentFood.calcium | nutrientValues}}</td> 
+          <td><button (click)="deleteFoodFromRecipe(currentRecipe, currentFood._id)">X</button></td>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr style="font-weight: 500">
+          <td>Current Total</td>
+          <td>{{(recipeounce).toFixed(1)}} oz</td>
+          <td>{{(recipecalories).toFixed(1)}} cal</td>
+          <td>{{(recipeprotein).toFixed(1)}} g</td>
+          <td>{{(recipecarbs).toFixed(1)}} g</td>
+          <td>{{(recipefats).toFixed(1)}} g</td>
+          <td>{{(recipevitaminE).toFixed(1)}} mg</td>
+          <td>{{(recipevitaminD).toFixed(1)}} IU</td>
+          <td>{{(recipezinc).toFixed(1)}} mg</td>
+          <td>{{(recipecopper).toFixed(1)}} mg</td>
+          <td>{{(recipecalcium).toFixed(1)}} mg</td>
+          <td></td>
+        </tr>
+        <tr style="font-weight: 700">
+          <td>Total Goal</td>
+          <td>-</td>
+          <td>{{newDog.calorieintake}} cal</td>
+          <td>{{newDog.targetweight}} g</td>
+          <td>-</td>
+          <td>{{(newDog.foodintake*453.592*5/100).toFixed(1)}} g</td> <!-- 5% of food weight-->
+          <td>{{(newDog.weight*2*.67).toFixed(1)}} mg</td> <!-- 2 IU per weight in pounds a day. 1IU = 0.67 mg-->
+          <td>{{(newDog.weight*125/33).toFixed(1)}} IU</td> <!-- minimum 125IU per day for every 33 lb of dog (max 750)-->
+          <td>{{(newDog.weight*25/50).toFixed(1)}} mg</td> <!-- 25 mg of zinc per 50 pound of dog-->
+          <td>{{(newDog.foodintake*3.3).toFixed(1)}} mg</td> <!--3.3mg of copper daily for every pound of dog food-->
+          <td>{{(newDog.weight*250/11).toFixed(1)}} mg</td> <!--11 lb dog needs 250mg calcium per day (ratio of 0.044)-->
+          <td></td>
+        </tr>
+        
+        <a class="btn btn-primary btn-outline-success" role="button" style="color:green" (click)="addRecipeToDog()">Share your recipe!</a>
+      </tbody>
+    </table>
+  </div>
+
+
+  
+
+</div>
+
+
+

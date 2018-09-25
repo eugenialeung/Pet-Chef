@@ -1,0 +1,58 @@
+<div class="container">
+  <form (submit)="showFoodForm()">
+    <!-- {{newDog | json}} -->
+    <div class="form-row">
+      <div class="form-group col-lg-12">
+          <label for="name">Recipe Name</label>
+          <input type="text" class="form-control" id="name" placeholder="Recipe Name" name="newDog.name" [(ngModel)]="newDog.name">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for = "creator">Your Name</label>
+        <input type="text" class="form-control" id="creator" placeholder="Your Name" name="newDog.creator" [(ngModel)]="newDog.creator">
+      </div>
+      <div class="form-group col-md-6">
+          <label for = "petname">Dog's Name</label>
+          <input type="text" class="form-control" id="petname" placeholder="Pet's Name" name="newDog.petname" [(ngModel)]="newDog.petname">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-3">
+      <label for="weight">Dog's Weight (lbs)</label>
+        <input type="text" class="form-control" id="weight" name="newDog.weight" [(ngModel)]="newDog.weight">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="targetweight">Target Weight (lbs)</label>
+          <input type="text" class="form-control" id="targetweight" name="newDog.targetweight" [(ngModel)]="newDog.targetweight">
+        </div>
+      <div class="form-group col-md-3">
+        <label for="activity">Dog's Activity Level</label>
+        <select id="activity" class="form-control" name="newDog.activity" [(ngModel)]="newDog.activity">
+            <option selected value="average">Average</option>
+            <option value="active">Highly Active</option>
+            <option value="inactive"> Inactive</option>
+          </select>
+      </div>
+      <div class="form-group col-md-3">
+        <label for="breed">Dog Breed</label>
+        <select id="breed" class="form-control" name="newDog.breed" [(ngModel)]="newDog.breed">
+            <option value="{{b}}" *ngFor="let b of allBreeds">{{b}}</option>
+          </select>
+      </div>
+    </div>
+    <!-- <input class="btn btn-primary" type="submit" value="Create your meal!" > -->
+    <!-- <button class="btn btn-primary" type="submit">Create your meal!</button> -->
+    <button (click)="onClick()"class="btn btn-primary" type="submit">Create your meal!</button>
+
+    <!-- <a class="btn btn-primary" role="button" type="subit" scrollTo scrollTargetSelector="#showFormTwo">Calculate Now!</a> -->
+  </form>
+  <p *ngFor="let e of errors" style="color:red">{{e}}</p>
+</div>
+
+
+<div id="showFormTwo"></div>
+<app-foodform  *ngIf="secondForm" id="foodForm"  [newDog]="newDog" [foodIntake]="foodIntake" [calorieIntake]="calorieIntake" ></app-foodform>
+
+
+

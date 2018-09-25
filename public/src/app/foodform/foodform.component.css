@@ -1,0 +1,9 @@
+.foodForm{
+    border: 1px solid darkgrey;
+    border-radius: 10px;
+    margin: 50px;
+    padding: 30px;
+}
+h4{
+    text-align: center;
+}

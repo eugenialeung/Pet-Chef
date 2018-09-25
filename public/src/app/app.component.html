@@ -1,0 +1,82 @@
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">
+      <img src="assets/logo.png" class="responsive">
+      Pet Chef Calculator
+    </a>
+    
+  
+    <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+  
+    <div class=" collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }">
+      <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" [routerLink]="['/home']">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="goBackToRecipes()" [routerLink]="['/recipes']">Recipe Inspo</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link">Nutrients</a>
+          </li>  
+          <li class="nav-item">
+            <a class="nav-link">About</a>
+          </li>   
+      </ul>
+  
+    </div>
+  </nav>
+
+
+  
+
+
+
+<div>
+    <router-outlet></router-outlet>
+</div>
+
+
+
+
+
+<footer>
+    <div class="container-fluid padding">
+      <div class="row text-center">
+        <div class="col-md-4">
+          <hr class="light">
+          <h5>Home</h5>
+          <hr class="light">
+          <p>Proportion Calculator</p>
+          <p>Build Your Meal</p>
+          <p>Recipe Inspo</p>
+          <p></p>
+        </div>
+        <div class="col-md-4">
+          <hr class="light">
+          <h5>Recipe Inspo</h5>
+          <hr class="light">
+          <p>Our Story</p>
+          <p>Our Process</p>
+          <p>Blog</p>
+        </div>
+        <div class="col-md-4">
+          <hr class="light">
+          <h5>Nutrients</h5>
+          <hr class="light">
+          <p>Essentials</p>
+          <p>Vitamins</p>
+          <p>Minerals</p>
+        </div>
+        <div class="col-12">
+          <hr class="light">
+          <h5>&copy; Pup Prep Calculator</h5>
+        </div>
+      </div>
+    </div>
+    </footer>
+

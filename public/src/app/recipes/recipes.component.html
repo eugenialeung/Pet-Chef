@@ -1,0 +1,64 @@
+<div class="container">
+
+	<div class="row justify-content-center">
+    <div class="col-12 col-md-10 col-lg-8">
+        <form class="card card-sm"  (submit)="searchRecipes()">
+          <div class="card-body row no-gutters align-items-center">
+              <div class="col-auto">
+                  <i class="fas fa-search h4 text-body"></i>
+              </div>
+              <!--end of col-->
+              <div class="col">
+                  <input class="form-control form-control-lg form-control-borderless" type="search" name="search.searchbar" [(ngModel)]="search.searchbar" placeholder="Search by creator, pet name, or breed" >
+              </div>
+              <!--end of col-->
+              <div class="col-auto">
+                  <button class="btn btn-md btn-outline-success" type="submit">Search Recipes</button>
+              </div>
+              <!--end of col-->
+          </div>
+      </form>
+    </div>
+    <!--end of col-->
+  </div>
+</div>
+
+
+
+<div class="card-group" *ngIf="allDogsWithRecipes">
+  <div class="col-sm-4" *ngFor="let dog of allDogsWithRecipes">
+    <div class="card">
+      <h3 class="card-header" style="font-family: 'Playfair Display', serif; font-style: italic">{{dog.name}}</h3>
+      <div class="card-body">
+        <div class="card-text">
+          <div style="font-family: 'Chivo', sans-serif">
+            <p >For: {{dog.petname}}, the {{dog.breed}}</p>
+            <p>{{dog.petname}} is currently {{dog.weight}} lbs with a goal of {{dog.targetweight}} lbs</p>
+            <p>Activity level: {{dog.activity}}</p>
+            <p>Goals per day:</p>
+            <p style="text-indent: 20px">- {{dog.foodintake*16}} ounces of food </p>
+            <p style="text-indent: 20px">- {{dog.calorieintake}} calories</p>
+          </div>
+          <hr>
+          <h5 style="font-family: 'Playfair Display', serif; font-style: italic">Ingredients: </h5>
+          <hr>
+          <div *ngFor="let myFood of dog.diet[0].food">
+            <p style="font-family: 'Chivo', sans-serif">{{myFood.foodweight}} oz. {{myFood.foodname}}</p>
+          </div>
+          <hr>
+          <p style="font-family: 'Chivo', sans-serif">Recipe's totals per day:</p>
+          <p style="text-indent: 20px">- {{(dog.diet[0].recipetotalweight).toFixed(1)}} ounces</p>
+          <p style="text-indent: 20px">- {{(dog.diet[0].recipetotalcalories).toFixed(1)}} calories </p>
+        </div>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted">Created on {{ dog.createdAt | date: "MM/dd/yyyy" }} by {{dog.creator}}</small>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+

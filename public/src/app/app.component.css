@@ -1,0 +1,22 @@
+.navbar{
+    margin-bottom:0;
+}
+
+hr {
+    color: grey;
+    background-color: grey;
+    height: 1px;    
+}
+
+/* div.collapse.navbar-collapse{
+    display: inline-block!important;
+} */
+
+.responsive {
+    /* width: 100%; */
+    max-width: 70px;
+    height: auto;
+}
+a.navbar-brand{
+    padding: 0;
+}

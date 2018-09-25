@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css?family=Chivo");
+@import url("https://fonts.googleapis.com/css?family=Playfair+Display");
+
+
+
+
+p{
+    margin: 0;
+}
+.card{
+    margin-top: 20px;
+    
+}
+
+
+
+.form-control-borderless {
+    border: none;
+}
+
+.form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+div.card-body.row.no-gutters.align-items-center{
+    padding: 5px;
+}
